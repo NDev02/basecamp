@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Scoutbase API Portal</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="portal.js"></script>
+    <script src="selected-event.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Scoutbase Developer Portal</h1>
+    </header>
+    <section>
+        <div class="card">
+            <h1>Connection Status</h1>
+            <article id="connection-status">
+
+            </article>
+        </div>
+        <div class="card">
+            <h1>Admin API-Key</h1>
+            <article id="admin-key">
+
+            </article>
+        </div>
+        <div class="card">
+            <h1>TBA API-Key</h1>
+            <article id="tba-key">
+            </article>
+        </div>
+        <div class="card">
+            <h1>Registered Events</h1>
+            <article>
+                <div class="input-section">
+                    <label>Event Code</label>
+                    <input id="event-code" placeholder="2018nyro,2019nyro">
+                    <button class="login" onclick="addEvent()">Add Event</button>
+                </div>
+                <div class="input-section">
+                    <label>Event Code</label>
+                    <input id="event-code-remove" placeholder="2018nyro,2019nyro">
+                    <button class="login" onclick="removeEvent()">Remove Event</button>
+                </div>
+                <div class="input-section">
+                    <label>Year</label>
+                    <input id="event-code-year" placeholder="2019">
+                    <button class="login" onclick="getBlueAllianceEvents()">Fetch from TBA</button>
+                </div>
+                <button onclick="eventsListToggle()" class="floater"><i class="material-icons">remove_red_eye</i></button>
+                <ul id="events-list">Getting Events</ul>
+            </article>
+        </div>
+        <div class="card">
+            <h1>Selected Event</h1>
+            <article>
+                <span id="select-hint">Select an event from the list in the card above</span>
+                <div class="input-section">
+                    <input id="match-alliance-length" placeholder="Alliance Length">
+                    <input id="match-team-breakdown" placeholder="Breakdown Model">
+                    <button class="login" onclick="getBlueAllianceMatches()">Fetch matches from TBA</button>
+                </div>
+                <table id="match-table" cellspacing="0" hidden>
+                    <tr>
+                        <td>Winner</td>
+                        <td>Red 1</td>
+                        <td>Red 2</td>
+                        <td>Red 3</td>
+                        <td>Blue 1</td>
+                        <td>Blue 2</td>
+                        <td>Blue 3</td>
+                    </tr>
+                </table>
+                <button onclick="matchListToggle()" id="match-toggle" class="floater" hidden><i class="material-icons">remove_red_eye</i></button>
+            </article>
+        </div>
+    </section>
+</body>
+
+</html>

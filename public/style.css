@@ -1,0 +1,168 @@
+:root {
+    --primary: #19227c;
+    --primary-light: #524aac;
+    --primary-dark: #00004f;
+    --secondary: #dd2c00;
+    --secondary-light: #ff6434;
+    --secondary-dark: #a30000;
+    --background: #eeeeee;
+    --text-card: #333333;
+    --text-raw: #ffffff;
+}
+
+body, html {
+    margin: 0;
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    background: var(--primary);
+    color: var(--text-raw);
+}
+
+*:focus {
+    outline: none;
+}
+
+.card:last-child {
+    margin-bottom: 4em;
+}
+
+section {
+    width: 80%;
+    max-width: 990px;
+    margin: 0 auto;
+    padding-top: 3em;
+}
+
+header {
+    background: var(--primary-dark);
+    margin: 0;
+    padding: 0.3em;
+    text-align: center;
+}
+
+table {
+    width: calc(100% - 2em);
+    background: var(--secondary);
+    color: var(--text-raw);
+    border-radius: 0.7em;
+    padding: 0.5em;
+    margin: 1em;
+    text-align: center;
+}
+
+table tbody tr {
+    background: var(--secondary);
+    font-size: 1em;
+    font-style: normal;
+}
+
+table tr {
+    font-style: italic;
+}
+
+table tr:nth-child(2n) {
+    background: var(--secondary-dark);
+    padding: 1em;
+}
+
+.card .input-section {
+    background: var(--secondary-light);
+    padding: 0.5em;
+    margin: 0.5em;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 0.5em;
+    border-radius: 0.5em;
+}
+
+.card .input-section label {
+    color: var(--text-raw);
+    text-align: center;
+}
+
+.card .input-section .login {
+    margin-top: 0;
+}
+
+.input-section {
+    margin: 1em 0;
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+}
+
+.input-section label {
+    align-self: center;
+    font-size: 1em;
+}
+
+.input-section input {
+    background: var(--background);
+    color: var(--text-card);
+    border: none;
+    border-radius: 0.7em;
+    height: 2.5em;
+    align-self: center;
+    padding: 0.5em;
+    width: calc(100% - 1em);
+}
+
+.login {
+    width: 100%;
+    border: none;
+    padding: 1em;
+    margin-top: 2em;
+    border-radius: 0.7em;
+    background: var(--secondary);
+    color: var(--text-raw);
+    transition: background 0.5s;
+}
+
+.login:hover {
+    background: var(--secondary-dark);
+}
+
+.card {
+    border-radius: 0.5em;
+    background: var(--background);
+    margin: 1em 0em;
+}
+
+.card h1 {
+    background: var(--primary-dark);
+    border-radius: 0.3em 0.3em 0 0;
+    padding: 0.5em;
+    margin: 0;
+}
+
+.card article {
+    padding: 1.5em;
+    color: var(--text-card);
+    position: relative;
+}
+
+.floater {
+    color: var(--secondary-dark);
+    border: none;
+    background: none;
+    font-size: 1em;
+    position: absolute;
+    right: 0.25em;
+    top: calc(100% - 2em);
+}
+
+#events-list:not([hidden]) {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+@media only screen and (max-width: 810px) {
+    .card article {
+        font-size: 0.8em;
+    }
+    .card .input-section {
+        grid-template-columns: 1fr;
+    }
+    #events-list:not([hidden]) {
+        grid-template-columns: 1fr;
+    }
+}
