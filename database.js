@@ -31,7 +31,7 @@ class Scoutbase {
     }
 
     writeToEvent(eventName, data) {
-        this.connection.collection(eventName).insertOne(data)
+        this.connection.collection(eventName).insertOne(data);
     }
 
     getEvents() {
@@ -47,7 +47,7 @@ class Scoutbase {
     }
 
     postMatchData(eventName, data) {
-        //this.connection.db.collection(eventName).
+        return this.connection.db.collection(eventName).insertOne(data);
     }
 
 }

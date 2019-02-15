@@ -9,7 +9,7 @@ let portalLogin = {
     "password": "1559Scouter!"
 }
 
-// Breakdown model: {auto: {}, tele: {}, end:{}}
+// Breakdown model: {'auto': {}, 'tele': {}, 'end':{}}
 /* Query all matches that include 1559, on red or blue */
 /* {$or:[{'red.team': '1559'},{'blue.team': '1559'}]} */
 
@@ -29,6 +29,11 @@ const INVALID_ENDPOINT = { 'msg': 'Invalid endpoint, nothing here' };
 
 api.use(Express.json());
 api.use('/portal', Express.static('public'))
+api.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 database.connect(connected);
 
 function connected() {
@@ -88,8 +93,12 @@ api.get('/:eventCode/matches/:team', function (req, res) {
     });
 });
 
-api.post('/:eventCode/scout', function (req, res) {
-    database.postMatchData(req.params.eventCode, res);
+api.get('/:eventCode/scout', function (req, res) {
+    let data = req.query;
+    delete data.key;
+    database.postMatchData(req.params.eventCode, data).then(r => {
+        res.send(r);
+    });
 });
 
 api.post('/admin/events/', function (req, res) {
@@ -117,5 +126,6 @@ api.post('/admin/:eventCode/matches', function (req, res) {
 api.get('*', function (req, res) {
     res.send(INVALID_ENDPOINT);
 });
+
 
 api.listen(8080);
