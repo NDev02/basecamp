@@ -4,6 +4,8 @@ let database = new Database();
 let Express = require('express');
 let api = Express();
 
+let disableAuthReq = true;
+
 let portalLogin = {
     "username": "ngordon",
     "password": "1559Scouter!"
@@ -44,7 +46,7 @@ api.all('*', function (req, res, next) {
     if (database.connection == undefined) {
         res.send({ 'msg': 'Database not connected, try again later' });
     }
-    else if (!keys.includes(req.query.key)) {
+    else if (!keys.includes(req.query.key) && !disableAuthReq) {
         res.send({ 'msg': 'Unauthorized api request, add ?key=<valid key> to your request' });
     }
     else {
@@ -93,11 +95,10 @@ api.get('/:eventCode/matches/:team', function (req, res) {
     });
 });
 
-api.get('/:eventCode/scout', function (req, res) {
+api.post('/:eventCode/scout', function (req, res) {
     let data = req.query;
-    delete data.key;
-    database.postMatchData(req.params.eventCode, data).then(r => {
-        res.send(r);
+    database.postMatchData(req.params.eventCode, req.body).then(r => {
+        res.send({'msg': 'posted to event'});
     });
 });
 

@@ -31,6 +31,7 @@ class Scoutbase {
     }
 
     writeToEvent(eventName, data) {
+        data['type'] = 'config';
         this.connection.collection(eventName).insertOne(data);
     }
 
@@ -47,6 +48,7 @@ class Scoutbase {
     }
 
     postMatchData(eventName, data) {
+        data['type'] = 'match';
         return this.connection.db.collection(eventName).insertOne(data);
     }
 
