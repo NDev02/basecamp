@@ -44,7 +44,11 @@ class Scoutbase {
     }
 
     getMatchesForTeam(eventName, team) {
-        return this.connection.db.collection(eventName).find({ $or: [{ 'red.team': team }, { 'blue.team': team }] }).toArray();
+        return this.connection.db.collection(eventName).find({ 'team': team }).toArray();
+    }
+
+    getMatchesForClimb(eventName, climb) {
+        return this.connection.db.collection(eventName).find({ 'level': climb }).toArray();
     }
 
     postMatchData(eventName, data) {

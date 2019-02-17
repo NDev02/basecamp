@@ -95,6 +95,12 @@ api.get('/:eventCode/matches/:team', function (req, res) {
     });
 });
 
+api.get('/:eventCode/matches/climb/:climb', function (req, res) {
+    database.getMatchesForClimb(req.params.eventCode, req.params.climb).then(matches => {
+        res.send(matches);
+    });
+});
+
 api.post('/:eventCode/scout', function (req, res) {
     let data = req.query;
     database.postMatchData(req.params.eventCode, req.body).then(r => {
